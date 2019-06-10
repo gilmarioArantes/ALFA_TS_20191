@@ -5,13 +5,14 @@ package br.com.gilmar;
  */
 public class Avaliacao {
 
-    public String avalia(double nota1, double nota2, double faltas, double cargaHoraria) throws ValoresInvalidosException{
+
+    public String avalia(double nota1, double nota2, int faltas, int cargaHoraria) throws ValoresInvalidosException{
         String result;
-        double percentualFaltas = (faltas/cargaHoraria);
+        double percentualFaltas = (faltas*100/cargaHoraria);
         double media = (nota1 + nota2)/2;
-        if((nota1 < 0.0 || nota1 > 10) || (nota2 < 0.0 || nota2 > 10) || (faltas < 0.0 || faltas > cargaHoraria) || cargaHoraria < 0.0){
+        if((nota1 < 0.0 || nota1 > 10) || (nota2 < 0.0 || nota2 > 10) || (faltas < 0 || faltas > cargaHoraria) || cargaHoraria < 0){
             throw new ValoresInvalidosException();//result = "Valores Inválidos.";
-        }else if(percentualFaltas > 0.25){
+        }else if(percentualFaltas > 25.0){
             result = "Reprovado por Falta.";
         }else if(media < 3.0){
             result = "Reprovado por Média.";
